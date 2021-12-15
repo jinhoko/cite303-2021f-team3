@@ -30,7 +30,7 @@ snowX2 = 1920
 snowY1 = 0
 snowY2 = 1080
 randSpeed = [2,3]
-slowdown = 5    # 2, 3..
+slowdown = 2    # 2, 3..
 for q in range(numSnow):
     x = random.randrange(snowX1,snowX2)
     y = random.randrange(snowY1,snowY2)
