@@ -7,6 +7,7 @@ Assets
 pygame.init()
 WHITE = (255,255,255)
 BLACK = (0,0,0)
+GRAY1 = (100,100,100)
 image = pygame.image.load(r'images/tree1.png')
 image = pygame.transform.scale(image, (400,500))    # 4: 5 scale
 cupbase = pygame.image.load(r'images/coffee-bottom.png')
@@ -21,6 +22,10 @@ stars = [
     pygame.transform.scale( pygame.image.load(r'images/s4.png'), starsize),
     pygame.transform.scale( pygame.image.load(r'images/s5.png'), starsize)
 ]
+font1 = pygame.font.Font('fonts/notosanskr.ttf', 70) 
+
+text1 = font1.render("텀블러 쓰셈", True, WHITE)
+
 
 #screen = pygame.display.set_mode([1600, 1200], pygame.FULLSCREEN) 
 screen = pygame.display.set_mode([1920, 1200], pygame.RESIZABLE) # use only by 1600
@@ -28,7 +33,7 @@ screen = pygame.display.set_mode([1920, 1200], pygame.RESIZABLE) # use only by 1
 clock = pygame.time.Clock()
 
 target_cnt = 50
-current_cnt = 50 # TODO change this
+current_cnt = 10 # TODO change this
 # make 5 interim steps
 
 def getProgress():
@@ -79,7 +84,7 @@ for q in range(numSnow):
     snowflakes.append([x,y,random.choice(randSpeed), 0])
 def drawSnow():
     for i in snowflakes:
-        i[3] +=1 
+        i[3] +=1
         if i[3] % slowdown == 0:
             i[1] += i[2]
             i[3] = 0
@@ -100,8 +105,15 @@ def drawBottom():
 Text / desc
 """
 def drawDesc():
-    pass
+    x1 = 100
+    x2 = 700
+    pygame.draw.line(screen, GRAY1, [x1,675 - 10*riseinterval], [x2,675 - 10*riseinterval], 5)
+    pygame.draw.line(screen, GRAY1, [x1,675 - 20*riseinterval], [x2,675 - 20*riseinterval], 5)
+    pygame.draw.line(screen, GRAY1, [x1,675 - 30*riseinterval], [x2,675 - 30*riseinterval], 5)
+    pygame.draw.line(screen, GRAY1, [x1,675 - 40*riseinterval], [x2,675 - 40*riseinterval], 5)
+    pygame.draw.line(screen, GRAY1, [x1,675 - 50*riseinterval], [x2,675 - 50*riseinterval], 5)
 
+    screen.blit(text1, [1200, 500])
 
 """
 Main Logic
@@ -121,10 +133,12 @@ while running:
     screen.fill((0, 0, 0))
 
 	# draw surface
-    drawBottom()
-    drawCups()
-    drawTree()
+    #drawDesc()
+    #drawBottom()
+    #drawCups()
+    #drawTree()
     drawSnow()
+    
 
 	# make clock tick 
     clock.tick(60)
